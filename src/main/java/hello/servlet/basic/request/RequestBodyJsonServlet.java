@@ -15,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 
 @WebServlet(name="requestBodyJsonServlet", urlPatterns="/request-body-json")
 public class RequestBodyJsonServlet extends HttpServlet {
+    //JSON 결과를 파싱해서 사용할수있는 자바객체로 변환하려면, JSON변환라이브러리(ObjectMapper)를 추가해 사용해야함
     private ObjectMapper objectMapper=new ObjectMapper();
 
     @Override
@@ -24,9 +25,11 @@ public class RequestBodyJsonServlet extends HttpServlet {
 
         System.out.println("messageBody = " + messageBody);
 
+
         HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
-        System.out.println("helloData.username = " + helloData.getUsername());
-        System.out.println("helloData.age = " + helloData.getAge());
+
+        System.out.println("helloData.username = " + helloData.getUsername());  //hello
+        System.out.println("helloData.age = " + helloData.getAge());    //20
 
         resp.getWriter().write("ok");
     }
