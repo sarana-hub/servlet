@@ -20,55 +20,61 @@ public class RequestHeaderServlet extends HttpServlet {
         printEtc(req);
     }
 
-    //start line 정보
+
+    /**start line 정보 출력*/
     private void printStartLine(HttpServletRequest req) {
         System.out.println("--- REQUEST-LINE - start ---");
         System.out.println("request.getMethod() = " + req.getMethod()); //GET
         System.out.println("request.getProtocol() = " + req.getProtocol()); //HTTP/1.1
         System.out.println("request.getScheme() = " + req.getScheme()); //http
-        // http://localhost:8080/request-header
+
         System.out.println("request.getRequestURL() = " + req.getRequestURL());
-        // /request-test
+        // http://localhost:8080/request-header
+
         System.out.println("request.getRequestURI() = " + req.getRequestURI());
-        //username=hi
-        System.out.println("request.getQueryString() = " +
-                req.getQueryString());
+        // request-header
+
+        System.out.println("request.getQueryString() = " + req.getQueryString());   //username=hello
         System.out.println("request.isSecure() = " + req.isSecure()); //https 사용 유무
         System.out.println("--- REQUEST-LINE - end ---");
         System.out.println();
     }
 
-    //Header 모든 정보
+
+    /**모든 Header 정보*/
     private void printHeaders(HttpServletRequest req) {
         System.out.println("--- Headers - start ---");
 
-        /*
+        /* //방법1
         Enumeration<String> headerNames = req.getHeaderNames();
         while (headerNames.hasMoreElements()) {
             String headerName = headerNames.nextElement();
             System.out.println(headerName + ": " + req.getHeader(headerName));
         }*/
 
+        //방법2
         req.getHeaderNames().asIterator()
-                .forEachRemaining(headerName -> System.out.println(headerName + ": "
-                        + req.getHeader(headerName)));
+                .forEachRemaining(headerName -> System.out.println(headerName + ": " + req.getHeader(headerName)));
+
         System.out.println("--- Headers - end ---");
         System.out.println();
     }
 
+
+    /**Header 편리한 조회*/
     private void printHeaderUtils(HttpServletRequest req) {
         System.out.println("--- Header 편의 조회 start ---");
         System.out.println("[Host 편의 조회]");
-        System.out.println("request.getServerName() = " +
-                req.getServerName()); //Host 헤더
-        System.out.println("request.getServerPort() = " +
-                req.getServerPort()); //Host 헤더
+        System.out.println("request.getServerName() = " + req.getServerName()); //Host 헤더
+        System.out.println("request.getServerPort() = " + req.getServerPort()); //Host 헤더
         System.out.println();
+
         System.out.println("[Accept-Language 편의 조회]");
         req.getLocales().asIterator()
                 .forEachRemaining(locale -> System.out.println("locale = " + locale));
         System.out.println("request.getLocale() = " + req.getLocale());
         System.out.println();
+
         System.out.println("[cookie 편의 조회]");
         if (req.getCookies() != null) {
             for (Cookie cookie : req.getCookies()) {
@@ -76,35 +82,28 @@ public class RequestHeaderServlet extends HttpServlet {
             }
         }
         System.out.println();
+
         System.out.println("[Content 편의 조회]");
-        System.out.println("request.getContentType() = " +
-                req.getContentType());
-        System.out.println("request.getContentLength() = " +
-                req.getContentLength());
-        System.out.println("request.getCharacterEncoding() = " +
-                req.getCharacterEncoding());
+        System.out.println("request.getContentType() = " + req.getContentType());
+        System.out.println("request.getContentLength() = " + req.getContentLength());
+        System.out.println("request.getCharacterEncoding() = " + req.getCharacterEncoding());
         System.out.println("--- Header 편의 조회 end ---");
         System.out.println();
     }
 
-    //기타 정보
+
+    //기타 정보 (HTTP메시지의 정보는 아님)
     private void printEtc(HttpServletRequest req) {
         System.out.println("--- 기타 조회 start ---");
         System.out.println("[Remote 정보]");
-        System.out.println("request.getRemoteHost() = " +
-                req.getRemoteHost()); //
-        System.out.println("request.getRemoteAddr() = " +
-                req.getRemoteAddr()); //
-        System.out.println("request.getRemotePort() = " +
-                req.getRemotePort()); //
+        System.out.println("request.getRemoteHost() = " + req.getRemoteHost()); //
+        System.out.println("request.getRemoteAddr() = " + req.getRemoteAddr()); //
+        System.out.println("request.getRemotePort() = " + req.getRemotePort()); //
         System.out.println();
         System.out.println("[Local 정보]");
-        System.out.println("request.getLocalName() = " +
-                req.getLocalName()); //
-        System.out.println("request.getLocalAddr() = " +
-                req.getLocalAddr()); //
-        System.out.println("request.getLocalPort() = " +
-                req.getLocalPort()); //
+        System.out.println("request.getLocalName() = " + req.getLocalName()); //
+        System.out.println("request.getLocalAddr() = " + req.getLocalAddr()); //
+        System.out.println("request.getLocalPort() = " + req.getLocalPort()); //
         System.out.println("--- 기타 조회 end ---");
         System.out.println();
     }
