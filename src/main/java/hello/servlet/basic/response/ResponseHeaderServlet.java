@@ -27,9 +27,9 @@ public class ResponseHeaderServlet extends HttpServlet {
         cookie(resp);
         redirect(resp);
 
-        //[message body]
+        //[message body]   //메시지 바디 생성
         PrintWriter writer = resp.getWriter();
-        writer.println("안녕.");      //메시지 바디 생성
+        writer.println("안녕.");      //단순 텍스트 응답
     }
 
     /** content 편의 메소드*/
