@@ -20,7 +20,7 @@ public class ResponseHtmlServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         writer.println("<html>");
         writer.println("<body>");
-        writer.println(" <div>안녕?</div>");
+        writer.println("    <div>안녕?</div>");
         writer.println("</body>");
         writer.println("</html>");
     }

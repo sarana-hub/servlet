@@ -17,14 +17,15 @@ public class ResponseJsonServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Content-Type: application/json
-        resp.setHeader("content-type", "application/json");
+        //HTTP 응답으로 JSON을 반환할 때는 content-type을 application/json 로 지정해야 한다
+        resp.setContentType("application/json");
         resp.setCharacterEncoding("utf-8");
+
         HelloData data = new HelloData();
         data.setUsername("kim");
         data.setAge(20);
-
-        //{"username":"kim","age":20} 이런식으로 바꾸기
-        String result = objectMapper.writeValueAsString(data);
+        //를 {"username":"kim","age":20} 이렇게 바꾸기
+        String result = objectMapper.writeValueAsString(data);      //객체(objectMapper)를 JSON문자로 변경
         resp.getWriter().write(result);
     }
 }
