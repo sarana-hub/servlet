@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+/**회원 목록 조회 - 컨트롤러*/
 
 @WebServlet(name = "mvcMemberListServlet", urlPatterns = "/servlet-mvc/members")
 public class MvcMemberListServlet extends HttpServlet {
@@ -18,10 +19,11 @@ public class MvcMemberListServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("MvcMemberListServlet.service");
+        //System.out.println("MvcMemberListServlet.service");
         List<Member> members = memberRepository.findAll();
 
         req.setAttribute("members", members);
+
         String viewPath = "/WEB-INF/views/members.jsp";
         RequestDispatcher dispatcher = req.getRequestDispatcher(viewPath);
         dispatcher.forward(req, resp);
