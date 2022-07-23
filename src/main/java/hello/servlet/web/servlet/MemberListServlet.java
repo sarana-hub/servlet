@@ -13,12 +13,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+/**저장된 모든 회원 목록을 조회*/
+
 @WebServlet(name = "memberListServlet", urlPatterns = "/servlet/members")
 public class MemberListServlet extends HttpServlet {
     private MemberRepository memberRepository = MemberRepository.getInstance();
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1. memberRepository.findAll() 을 통해 모든 회원을 조회한다
         List<Member> members= memberRepository.findAll();
 
         resp.setContentType("text/html");
@@ -39,13 +42,14 @@ public class MemberListServlet extends HttpServlet {
         w.write(" <th>age</th>");
         w.write(" </thead>");
         w.write(" <tbody>");
-/*
- w.write(" <tr>");
- w.write(" <td>1</td>");
- w.write(" <td>userA</td>");
- w.write(" <td>10</td>");
- w.write(" </tr>");
-*/
+        /*
+        w.write(" <tr>");
+        w.write(" <td>1</td>");
+        w.write(" <td>userA</td>");
+        w.write(" <td>10</td>");
+        w.write(" </tr>");
+        */
+        //2. 회원 목록 HTML을 for 루프를 통해서 회원 수 만큼 동적으로 생성하고 응답한다
         for (Member member : members) {
             w.write(" <tr>");
             w.write(" <td>" + member.getId() + "</td>");

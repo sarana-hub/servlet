@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+/**회원 등록 HTML 폼*/
 
 @WebServlet(name="memberFormServlet", urlPatterns = "/servlet/members/new-form")
 public class MemberFormServlet extends HttpServlet {
@@ -18,6 +19,7 @@ public class MemberFormServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         resp.setCharacterEncoding("utf-8");
+
         PrintWriter w = resp.getWriter();
         w.write("<!DOCTYPE html>\n" +
                 "<html>\n" +
@@ -34,4 +36,5 @@ public class MemberFormServlet extends HttpServlet {
                 "</body>\n" +
                 "</html>\n");
     }
+    //회원 정보를 입력할 수 있는 HTML Form을 만들어 응답
 }
