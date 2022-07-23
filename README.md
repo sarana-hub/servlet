@@ -1,11 +1,11 @@
 # servlet
-회원관리 웹 어플리케이션 요구사항
+## 회원관리 웹 어플리케이션 요구사항
 
-1. 회원정보
+### 1. 회원정보
 이름: username
 나이: age
 
-2. 기능 요구사항
+### 2. 기능 요구사항
 회원 저장, 회원 목록 
 
 ![image](https://user-images.githubusercontent.com/81903928/151689214-5ab57343-db43-4bc0-a7e7-28218689782d.png)
