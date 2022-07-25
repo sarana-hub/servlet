@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MemberListControllerV4 implements ControllerV4 {
+
     private MemberRepository memberRepository = MemberRepository.getInstance();
 
     @Override

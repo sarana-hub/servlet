@@ -42,17 +42,17 @@ public class FrontControllerServletV4 extends HttpServlet {
         }
 
         Map<String, String> paramMap = createParamMap(req);
-        Map<String, Object> model =new HashMap<>(); //추가
+        Map<String, Object> model =new HashMap<>();  //모델 객체를 생성해서 전달
 
         String viewName=controller.process(paramMap, model);
-
-        //MyView view=new MyView("/WEB-INF/views/" +viewName +".jsp");에서 ctrl+alt+m하면?
+        //컨트롤러가 직접 반환한 뷰의 논리 이름 (viewName)
         MyView view= viewResolver(viewName);
 
         view.render(model, req, resp);
     }
 
     private MyView viewResolver(String viewName) {
+
         return new MyView("/WEB-INF/views/" + viewName + ".jsp");
     }
 
