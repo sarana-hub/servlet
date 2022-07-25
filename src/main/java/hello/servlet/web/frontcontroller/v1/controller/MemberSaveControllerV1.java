@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**회원 저장 컨트롤러*/
 public class MemberSaveControllerV1 implements ControllerV1 {
     private MemberRepository memberRepository = MemberRepository.getInstance();
 
@@ -22,7 +23,7 @@ public class MemberSaveControllerV1 implements ControllerV1 {
         //System.out.println("member = " + member);
         memberRepository.save(member);
 
-        //Model에 데이터를 보관한다.
+        //Model에 데이터를 보관한다
         req.setAttribute("member", member);
 
         String viewPath = "/WEB-INF/views/save-result.jsp";
