@@ -31,12 +31,14 @@ public class FrontControllerServletV2 extends HttpServlet {
 
         String requestURI = req.getRequestURI();
 
-        ControllerV2 controller = (ControllerV2) controllerMap.get(requestURI);
+        ControllerV2 controller = controllerMap.get(requestURI);
         if (controller == null) {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
         MyView view = controller.process(req, resp);
         view.render(req, resp);
+        //ControllerV2의 반환 타입이 MyView 이므로
+        // 프론트 컨트롤러는 컨트롤러의 호출 결과로 MyView 를 반환받는다
     }
 }

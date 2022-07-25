@@ -7,21 +7,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-public class MyView {
+//뷰로 이동하는 부분(중복)을 분리
+
+public class MyView {   //별도로 뷰를 처리하는 객체
     private String viewPath;
 
     public MyView(String viewPath){
         this.viewPath =viewPath;
     }
 
-    public void render(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    public void render(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher(viewPath);
         dispatcher.forward(req, resp);
     }
 
-    public void render(Map<String, Object> model, HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException{
+
+    public void render(Map<String, Object> model, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         modelToRequestAttribute(model, req);
         RequestDispatcher dispatcher = req.getRequestDispatcher(viewPath);
         dispatcher.forward(req, resp);
