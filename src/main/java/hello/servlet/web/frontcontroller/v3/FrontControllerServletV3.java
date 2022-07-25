@@ -41,24 +41,29 @@ public class FrontControllerServletV3 extends HttpServlet {
         Map<String, String> paramMap = createParamMap(req);
         ModelView mv = controller.process(paramMap);
 
-        String viewName = mv.getViewName();
-
+        String viewName = mv.getViewName();  //논리이름 new-form
         //MyView view=new MyView("/WEB-INF/views/" +viewName +".jsp");에서 ctrl+alt+m하면?
         MyView view= viewResolver(viewName);
 
-        view.render(mv.getModel(), req, resp);
+        view.render(mv.getModel(), req, resp); //뷰 객체를 통해서 HTML 화면을 렌더링
     }
 
     private MyView viewResolver(String viewName) {
+
         return new MyView("/WEB-INF/views/" + viewName + ".jsp");
     }
+    //뷰 리졸버: 컨트롤러가 반환한 논리 뷰 이름을 실제 물리 뷰 경로로 변경하고, 실제 물리 경로가 있는 MyView 객체를 반환
+
 
     private Map<String, String> createParamMap(HttpServletRequest req) {
+        //HttpServletRequest에서 파라미터 정보를 꺼내서 Map으로 변환
         Map<String, String > paramMap=new HashMap<>();
 
+        //그리고 해당 Map( paramMap )을 컨트롤러에 전달하면서 호출
         req.getParameterNames().asIterator()
                 .forEachRemaining(paramName -> paramMap.put(paramName, req.getParameter(paramName)));
         return paramMap;
     }
+    //HttpServletRequest가 제공하는 파라미터는 프론트 컨트롤러가 paramMap에 담아서 호출
 
 }
