@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//HttpRequestHandler 인터페이스: 서블릿과 가장 유사한 형태의 핸들러
+
 @Component("/springmvc/request-handler")
 public class MyHttpRequestHandler implements HttpRequestHandler {
     @Override
