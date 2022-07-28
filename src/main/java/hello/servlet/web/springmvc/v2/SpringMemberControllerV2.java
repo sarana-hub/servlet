@@ -10,17 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * 클래스 단위 -> 메서드 단위
+ * @RequestMapping 클래스 레벨과 메서드 레벨 조합
+ */
 @Controller
-@RequestMapping("/springmvc/v2/members")
+@RequestMapping("/springmvc/v2/members")    // 컨트롤러 클래스를 통합,조합
 public class SpringMemberControllerV2 {
     private MemberRepository memberRepository = MemberRepository.getInstance();
 
-    @RequestMapping("/new-form")
+    @RequestMapping("/new-form") // /springmvc/v2/members/new-form
     public ModelAndView newForm(){
         return new ModelAndView("new-form");
     }
 
-    @RequestMapping("/save")
+    @RequestMapping("/save")    // /springmvc/v2/members/save
     public ModelAndView save(HttpServletRequest request, HttpServletResponse response){
         String username = request.getParameter("username");
         int age = Integer.parseInt(request.getParameter("age"));
@@ -33,7 +37,7 @@ public class SpringMemberControllerV2 {
         return mv;
     }
 
-    @RequestMapping
+    @RequestMapping     // /springmvc/v2/members
     public ModelAndView members() {
         List<Member> members = memberRepository.findAll();
 
