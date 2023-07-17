@@ -9,6 +9,7 @@ import java.io.IOException;
 
 @WebServlet(name="helloServlet", urlPatterns = "/hello")
 public class HelloServlet extends HttpServlet {
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -19,8 +20,10 @@ public class HelloServlet extends HttpServlet {
         String username = req.getParameter("username");
         System.out.println("username = " + username);
 
+        //헤더정보
         resp.setContentType("text/plain");  //단순 문자
-        resp.setCharacterEncoding("utf-8");  //거의 다 utf-8
+        resp.setCharacterEncoding("utf-8");  //인코딩 정보: 거의 다 utf-8을 사용
+
         resp.getWriter().write("hello "+username);
     }
 }
