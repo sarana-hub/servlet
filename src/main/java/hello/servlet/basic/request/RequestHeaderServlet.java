@@ -12,6 +12,7 @@ import java.util.Enumeration;
 //http://localhost:8080/request-header?username=hello
 @WebServlet(name = "requestHeaderServlet", urlPatterns = "/request-header")
 public class RequestHeaderServlet extends HttpServlet {
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         printStartLine(req);
@@ -21,7 +22,7 @@ public class RequestHeaderServlet extends HttpServlet {
     }
 
 
-    /**start line 정보 출력*/
+    /**start line 정보*/
     private void printStartLine(HttpServletRequest req) {
         System.out.println("--- REQUEST-LINE - start ---");
         System.out.println("request.getMethod() = " + req.getMethod()); //GET
@@ -45,13 +46,12 @@ public class RequestHeaderServlet extends HttpServlet {
     private void printHeaders(HttpServletRequest req) {
         System.out.println("--- Headers - start ---");
 
-        /* //방법1
-        Enumeration<String> headerNames = req.getHeaderNames();
+         //방법1
+        /*Enumeration<String> headerNames = req.getHeaderNames();
         while (headerNames.hasMoreElements()) {
             String headerName = headerNames.nextElement();
             System.out.println(headerName + ": " + req.getHeader(headerName));
         }*/
-
         //방법2
         req.getHeaderNames().asIterator()
                 .forEachRemaining(headerName -> System.out.println(headerName + ": " + req.getHeader(headerName)));
@@ -92,7 +92,7 @@ public class RequestHeaderServlet extends HttpServlet {
     }
 
 
-    //기타 정보 (HTTP메시지의 정보는 아님)
+    //기타 정보
     private void printEtc(HttpServletRequest req) {
         System.out.println("--- 기타 조회 start ---");
         System.out.println("[Remote 정보]");
