@@ -13,9 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * http://localhost:8080/request-body-json
+ *
+ * JSON 형식 전송
+ * content-type: application/json
+ * message body: {"username": "hello", "age": 20}
+ *
+ */
 @WebServlet(name="requestBodyJsonServlet", urlPatterns="/request-body-json")
 public class RequestBodyJsonServlet extends HttpServlet {
-    //JSON 결과를 파싱해서 사용할수있는 자바객체로 변환하려면, JSON변환라이브러리(ObjectMapper)를 추가해 사용해야함
+
+    //JSON 결과를 파싱해서 사용할 수 있는 자바 객체로 변환하기위해, ObjectMapper 추가
     private ObjectMapper objectMapper=new ObjectMapper();
 
     @Override
@@ -33,4 +42,5 @@ public class RequestBodyJsonServlet extends HttpServlet {
 
         resp.getWriter().write("ok");
     }
+
 }
