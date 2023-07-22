@@ -12,20 +12,24 @@ import java.io.IOException;
 
 @WebServlet(name="responseJsonServlet", urlPatterns = "/response-json")
 public class ResponseJsonServlet extends HttpServlet {
+
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         //Content-Type: application/json
-        //HTTP 응답으로 JSON을 반환할 때는 content-type을 application/json 로 지정해야 한다
+        //HTTP 응답으로 JSON을 반환할 때는 content-type을 application/json로 지정
         resp.setContentType("application/json");
         resp.setCharacterEncoding("utf-8");
 
         HelloData data = new HelloData();
         data.setUsername("kim");
         data.setAge(20);
-        //를 {"username":"kim","age":20} 이렇게 바꾸기
-        String result = objectMapper.writeValueAsString(data);      //객체(objectMapper)를 JSON문자로 변경
+        //를 {"username":"kim","age":20} 이렇게 JSON으로 변경
+        String result = objectMapper.writeValueAsString(data);   //객체를 JSON문자로 변경
+
         resp.getWriter().write(result);
     }
+
 }
