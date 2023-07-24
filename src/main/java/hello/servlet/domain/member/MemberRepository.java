@@ -8,20 +8,20 @@ import java.util.Map;
 /** 회원 저장소*/
 
  /*
- * 동시성 문제가 고려되어 있지 않음 (실무에서는 ConcurrentHashMap, AtomicLong 사용 고려)
+ * 동시성 문제가 고려되어 있지 않음
+ * 실무에서는 ConcurrentHashMap, AtomicLong 사용 고려
  */
 public class MemberRepository {
+
     private static Map<Long, Member> store=new HashMap<>();
     private static long sequence =0L;
 
-    private static final MemberRepository instance=new MemberRepository();
-
+    private static final MemberRepository instance=new MemberRepository(); //싱글톤(객체를 단 하나만 생성)
     public static MemberRepository getInstance(){
         return instance;
     }
 
-    private MemberRepository() {
-    }
+    private MemberRepository() {} //싱글톤(객체를 단 하나만 생성)
 
 
     public Member save(Member member) {
@@ -30,12 +30,16 @@ public class MemberRepository {
         return member;
     }
     public Member findById(Long id) {
+
         return store.get(id);
     }
+
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
     }
+
     public void clearStore() {
+
         store.clear();
     }
 }

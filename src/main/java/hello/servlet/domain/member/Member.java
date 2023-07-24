@@ -7,16 +7,16 @@ import lombok.Setter;
 
 @Getter @Setter
 public class Member {
+
     private Long id;
     private String username;
     private int age;
 
-    public Member() { //기본 생성자
-    }
+    public Member() {}
 
     public Member(String username, int age) {
         this.username = username;
         this.age = age;
-        //id 는 Member를 회원저장소에 저장하면 회원 저장소가 할당
+        //id는 Member를 회원저장소(DB)에 저장하면 회원저장소가 할당
     }
 }
