@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-/**회원 등록 HTML 폼*/
+
+/**회원 등록 폼*/
 
 @WebServlet(name="memberFormServlet", urlPatterns = "/servlet/members/new-form")
 public class MemberFormServlet extends HttpServlet {
-    private MemberRepository memberRepository = MemberRepository.getInstance();
+
+    private MemberRepository memberRepository = MemberRepository.getInstance(); //싱글톤이므로 new 안됨
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +37,6 @@ public class MemberFormServlet extends HttpServlet {
                 "</form>\n" +
                 "</body>\n" +
                 "</html>\n");
-    }
-    //회원 정보를 입력할 수 있는 HTML Form을 만들어 응답
+    }   //회원 정보를 입력할 수 있는 HTML Form
+
 }
