@@ -12,6 +12,7 @@ import java.io.IOException;
 
 /**회원 저장 컨트롤러*/
 public class MemberSaveControllerV1 implements ControllerV1 {
+
     private MemberRepository memberRepository = MemberRepository.getInstance();
 
     @Override
@@ -20,10 +21,8 @@ public class MemberSaveControllerV1 implements ControllerV1 {
         int age = Integer.parseInt(req.getParameter("age"));
 
         Member member = new Member(username, age);
-        //System.out.println("member = " + member);
         memberRepository.save(member);
 
-        //Model에 데이터를 보관한다
         req.setAttribute("member", member);
 
         String viewPath = "/WEB-INF/views/save-result.jsp";

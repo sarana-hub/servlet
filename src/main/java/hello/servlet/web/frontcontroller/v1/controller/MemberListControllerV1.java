@@ -13,6 +13,7 @@ import java.util.List;
 
 /**회원 목록 컨트롤러*/
 public class MemberListControllerV1 implements ControllerV1 {
+
     private MemberRepository memberRepository = MemberRepository.getInstance();
 
     @Override
