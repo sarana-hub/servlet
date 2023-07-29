@@ -45,7 +45,7 @@ public class FrontControllerServletV3 extends HttpServlet {
         //MyView view=new MyView("/WEB-INF/views/" +viewName +".jsp");에서 ctrl+alt+m하면?
         MyView view= viewResolver(viewName);
 
-        view.render(mv.getModel(), req, resp); //뷰 객체를 통해서 HTML 화면을 렌더링
+        //view.render(mv.getModel(), req, resp); //뷰 객체를 통해서 HTML 화면을 렌더링
     }
 
     private MyView viewResolver(String viewName) {

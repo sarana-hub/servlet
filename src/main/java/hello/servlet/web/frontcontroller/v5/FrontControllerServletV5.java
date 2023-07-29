@@ -69,7 +69,7 @@ public class FrontControllerServletV5 extends HttpServlet {
 
         MyView view= viewResolver(mv.getViewName());
 
-        view.render(mv.getModel(), req, resp);
+        //view.render(mv.getModel(), req, resp);
     }
 
     private MyHandlerAdapter getHandlerAdapter(Object handler) {

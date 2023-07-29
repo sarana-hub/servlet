@@ -17,10 +17,10 @@ import java.util.Map;
 
 @WebServlet(name = "frontControllerServletV2", urlPatterns = "/front-controller/v2/*")
 public class FrontControllerServletV2 extends HttpServlet {
+
     private Map<String, ControllerV2> controllerMap=new HashMap<>();
 
     public FrontControllerServletV2() {
-
         controllerMap.put("/front-controller/v2/members/new-form", new MemberFormControllerV2());
         controllerMap.put("/front-controller/v2/members/save", new MemberSaveControllerV2());
         controllerMap.put("/front-controller/v2/members", new MemberListControllerV2());
@@ -28,7 +28,6 @@ public class FrontControllerServletV2 extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String requestURI = req.getRequestURI();
 
         ControllerV2 controller = controllerMap.get(requestURI);
@@ -36,9 +35,8 @@ public class FrontControllerServletV2 extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
+
         MyView view = controller.process(req, resp);
         view.render(req, resp);
-        //ControllerV2의 반환 타입이 MyView 이므로
-        // 프론트 컨트롤러는 컨트롤러의 호출 결과로 MyView 를 반환받는다
     }
 }

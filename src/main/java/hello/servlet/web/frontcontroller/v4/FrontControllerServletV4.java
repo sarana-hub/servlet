@@ -48,7 +48,7 @@ public class FrontControllerServletV4 extends HttpServlet {
         //컨트롤러가 직접 반환한 뷰의 논리 이름 (viewName)
         MyView view= viewResolver(viewName);
 
-        view.render(model, req, resp);
+        //view.render(model, req, resp);
     }
 
     private MyView viewResolver(String viewName) {
