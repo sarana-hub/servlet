@@ -9,6 +9,5 @@ public interface ControllerV4 {
      * @param model
      * @return viewName
      */
-    String process(Map<String, String> paramMap, Map<String, Object> model);
-    //model 객체가 파라미터로 전달됨 (그냥 값만 넣어주면됨)
+    String process(Map<String, String> paramMap, Map<String, Object> model); //model 객체가 파라미터로 전달된다
 }

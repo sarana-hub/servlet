@@ -18,7 +18,7 @@ public class MemberSaveControllerV4 implements ControllerV4 {
         Member member = new Member(username, age);
         memberRepository.save(member);
 
-        model.put("member", member);
-        return "save-result";   //뷰의 논리이름만 반환해주면 됨
+        model.put("member", member);    //모델을 직접 생성하지 않고, 값만 넣으면 된다
+        return "save-result";   //뷰의 논리이름만 반환
     }
 }
