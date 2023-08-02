@@ -10,26 +10,26 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-/**ControllerV4를 처리할 수 있는 어댑터*/
+
 
 public class ControllerV4HandlerAdapter implements MyHandlerAdapter {
+
     @Override
     public boolean supports(Object handler) {
-        return (handler instanceof ControllerV4); //handler가 ControllerV4인 경우에만 처리
+        return (handler instanceof ControllerV4); //handler가 ControllerV4인 경우에만 처리하는 어댑터
     }
 
     @Override
-    public ModelView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
-        ControllerV4 controller = (ControllerV4) handler;   //handler를 ControllerV4로 캐스팅
+    public ModelView handle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws ServletException, IOException {
+        ControllerV4 controller = (ControllerV4) handler;   //1. handler를 ControllerV4로 캐스팅
 
-        //paramMap, model을 만들어서 해당 컨트롤러를 호출
-        Map<String, String> paramMap = createParamMap(request);
+        //2. paramMap과 model을 만들어서 해당 컨트롤러를 호출
+        Map<String, String> paramMap = createParamMap(req);
         Map<String, Object> model = new HashMap<>();
 
-        String viewName = controller.process(paramMap, model);  //viewName을 반환 받는다
+        String viewName = controller.process(paramMap, model);  //3. viewName을 반환 받는다
 
-        //ControllerV4 는 뷰의 이름을 반환했지만,
-        // 어댑터는 이것을 ModelView로 만들어서 형식을 맞추어 반환
+        /**뷰의 이름을 ModelView로 만들어서 형식을 맞추어 반환한다.*/
         ModelView mv = new ModelView(viewName);
         mv.setModel(model);
 
@@ -42,4 +42,5 @@ public class ControllerV4HandlerAdapter implements MyHandlerAdapter {
                 .forEachRemaining(paramName -> paramMap.put(paramName, req.getParameter(paramName)));
         return paramMap;
     }
+
 }
