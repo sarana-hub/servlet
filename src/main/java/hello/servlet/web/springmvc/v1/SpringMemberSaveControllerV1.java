@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 /** 회원 저장*/
 
 @Controller
@@ -21,13 +22,10 @@ public class SpringMemberSaveControllerV1 {
         int age = Integer.parseInt(req.getParameter("age"));
 
         Member member = new Member(username, age);
-        //System.out.println("member = " + member);
         memberRepository.save(member);
 
         ModelAndView mv = new ModelAndView("save-result");
-        mv.addObject("member", member);
-        //ModelAndView를 통해 Model 데이터를 추가할 때는 addObject() 를 사용
+        mv.addObject("member", member); //Model 데이터 추가
         return mv;
     }
-
 }
